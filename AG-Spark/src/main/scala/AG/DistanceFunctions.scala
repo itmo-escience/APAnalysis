@@ -14,7 +14,7 @@ object DistanceFunctions {
     val n = x_h.length
     var dist = 0.0
 
-    (1 to n).foreach { i =>
+    (0 to n-1).foreach { i =>
       dist += Math.pow((x_h(i) - y_h(i)), 2) + Math.pow((x_l(i) - y_l(i)), 2)
     }
 

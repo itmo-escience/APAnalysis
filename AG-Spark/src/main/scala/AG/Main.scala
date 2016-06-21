@@ -27,8 +27,11 @@ object Main {
     val parsedDataIndexed = parsedData.zipWithIndex().map{case (k,v) => (v,k)}.cache()
 
     val n = parsedData.count().toInt
-    var euclDistMatr = Array.empty[Vector[Double]]
 
+    var euclDistMatr = Array.empty[Vector[Double]]
+    
+    //calculate entire distance matrix
+    /*
     (0 to n-1).foreach { row =>
       var distVect = Vector.empty[Double]
       (row + 1 to n).foreach { column =>
@@ -36,7 +39,18 @@ object Main {
       }
       euclDistMatr :+= distVect
     }
-    println(euclDistMatr)
+    euclDistMatr.foreach(println)
+    */
+
+    var euclDistMatr2 = Array.empty[Vector[Double]]
+
+    //calculate distance vector for one patient
+    var distVect = Vector.empty[Double]
+    (1 to n-1).foreach { column =>
+      distVect :+= euclideanDistance(parsedDataIndexed.lookup(0).head, parsedDataIndexed.lookup(column).head)
+    }
+    println(distVect)
+
   }
 
 }

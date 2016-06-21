@@ -31,12 +31,12 @@ object Main {
 
     (1 to n-1).foreach { row =>
       var distVect = Vector.empty[Double]
-      (row + 1 to n).foreach { column =>
-        println(parsedDataIndexed.lookup(row).toArray, parsedDataIndexed.lookup(column).toArray)
-        distVect :+= euclideanDistance(parsedDataIndexed.lookup(row), parsedDataIndexed.lookup(column).toArray)
+      (row + 1 to n-1).foreach { column =>
+        distVect :+= euclideanDistance(parsedDataIndexed.lookup(row).head, parsedDataIndexed.lookup(column).head)
       }
       euclDistMatr :+= distVect
     }
+    println(euclDistMatr)
   }
 
 }

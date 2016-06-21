@@ -29,9 +29,9 @@ object Main {
     val n = parsedData.count().toInt
     var euclDistMatr = Array.empty[Vector[Double]]
 
-    (1 to n-1).foreach { row =>
+    (0 to n-1).foreach { row =>
       var distVect = Vector.empty[Double]
-      (row + 1 to n-1).foreach { column =>
+      (row + 1 to n).foreach { column =>
         distVect :+= euclideanDistance(parsedDataIndexed.lookup(row).head, parsedDataIndexed.lookup(column).head)
       }
       euclDistMatr :+= distVect

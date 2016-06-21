@@ -42,8 +42,6 @@ object Main {
     euclDistMatr.foreach(println)
     */
 
-    var euclDistMatr2 = Array.empty[Vector[Double]]
-
     //calculate distance vector for one patient
     var distVect = Vector.empty[Double]
     (1 to n-1).foreach { column =>

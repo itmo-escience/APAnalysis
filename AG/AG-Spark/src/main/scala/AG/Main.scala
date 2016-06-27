@@ -43,20 +43,16 @@ object Main {
     */
 
     //calculate euclidean distance vector for one patient
-//    var euclDistVect = Vector.empty[Double]
-//    (1 to n-1).foreach { column =>
-//      euclDistVect :+= euclideanDistance(parsedData.lookup(0).head, parsedData.lookup(column).head)
-//    }
-//    println(euclDistVect)
+    var euclDistVect = Vector.empty[Double]
+    (1 to n-1).foreach { column =>
+      euclDistVect :+= euclideanDistance(parsedData.lookup(0).head, parsedData.lookup(column).head)
+    }
+    println(euclDistVect)
 
     //calculate mahalanobis distance vector for one patient
+    var mahalDistVect = Vector.empty[Double]
     val covariance = findCovariance(measurementData)
     val inverseCovariance = inv(covariance)
-
-    covariance.toArray.foreach(println)
-    println(covariance.rows, covariance.cols)
-
-    var mahalDistVect = Vector.empty[Double]
     (1 to n-1).foreach { column =>
       mahalDistVect :+= mahalanobisDistance(parsedData.lookup(0).head, parsedData.lookup(column).head, inverseCovariance)
     }

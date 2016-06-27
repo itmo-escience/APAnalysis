@@ -1,0 +1,113 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720
+
+\f0\fs22 \cf0 \expnd0\expndtw0\kerning0
+In the pilot study need to perform several steps for evaluating the performance of blood pressure data processing applications.\
+\
+Stage 1:\
+\
+\
+Applied target. According to the presented data, the patient's blood pressure is necessary to find the most similar patients blood pressure to an already existing base of stationary observation.\
+The research goal. Study APK behavior depending on the load produced by the processing of the blood pressure data.\
+\
+Data.\
+\
+To obtain the data necessary to use the application "Simulation of BP", and perform the following steps.\
+Configure the application "Simulation of BP" to generate 100,000 user profiles, with the following characteristics (config.ini configuration file):\
+Day = 1 (simulate user profiles only for one day)\
+step = 15 - the frequency of every 15 minutes\
+patients = 99999 - the maximum index patients\
+firstday = 02.02.2010 12:00 - date started modeling\
+male = .5 - the male half of the coefficient\
+setting types of patients.\
+[Dippers]\
+prevalence = 60\
+l = 10\
+u = 22\
+\
+[Non-dippers]\
+prevalence = 20\
+l = 0\
+u = 10\
+\
+[Over-dippers]\
+prevalence = 15\
+l = 22\
+u = 30\
+\
+[Night-peakers]\
+prevalence = 5\
+l = 0\
+u = -30\
+* In the case of generating large amounts of data, you can break them into chunks, using chunk_size parameter = 12 (in MB)\
+Run "Simulator BP" start line application: python simulate.py data.out 100000_patients\
+Save used database data.out the data file that contains 100,000 user accounts, each of which has the following format:\
+1 line meta PATIENT <male | female> <age> <Type>;\
+K format strings <Date> <Time>; <HighAP>; <LowAP>.\
+Also, create unique identifiers patients.\
+\
+Allowed any optimization improvements when working in the database.\
+\'a0\
+Estimated task.\
+Estimated task consists of two parts: the search for the most similar to the current patients to a patient in the Euclidean metric; search for the most similar to the current patient to patient on the Mahalanobis metric.\
+1) Search by the Euclidean metric. We need to carry on the sample application Java project calculation of the Euclidean distance between the current patient and all other patients by the formula:\
+(1)\
+\'a0In this case the values \uc0\u8203 \u8203 for AD patients pair. In this case, BP combined upper and lower blood pressure in a single vector. The index k is in the range of blood pressure values \u8203 \u8203 of the array. In the case of data generated every 15 minutes for 1 day - a range from 1 to 192.\
+As a result of the distance estimation to find the 20 most similar in AD patients and to bring their IDs with distance value.\
+2) Search by Mahalanobis metric. We need to carry on the sample application Java project Mahalanobis distance calculation between the current patient and all other patients by the formula:\
+(2)\
+In this case, the values \uc0\u8203 \u8203 for AD patients pair, similar to the formula (1). inverse covariance matrix for the dimension of the pressure values \u8203 \u8203 of 192 to 192, in the case of data generated every 15 minutes for 1 day.\
+As a result of the distance estimation to find the 20 most similar in AD patients and to bring their IDs with distance value.\
+\
+As a result of 1) and 2) to find the intersection of patients (those who entered the Top 20 on both lists) and display the result.\
+\'a0Allowed any optimization improvements when working with the database.\
+In the study, it is necessary to evaluate:\
+Hours of operations individually calculated statistically, the results of more than 10 runs (depending on the values \uc0\u8203 \u8203 of the spread). For operations include processing operations database queries, time computer processing overhead.\
+Create performance evaluation table for different numbers of users and different period for each operation.\
+\
+Stage 2:\
+\
+Applied target. For the patient on the presented data, monitoring of blood pressure for a short period, it is necessary to find the most similar patients on blood pressure in the already existing framework, in order to predict future customer behavior.\
+The research goal. Study APK behavior depending on the load produced by the processing of the blood pressure data.\
+Data.\
+To obtain the data necessary to use the application "Simulation of BP", and perform the following steps.\
+Configure the application "Simulation of BP" to generate 50,000 user profiles with the following characteristics (config.ini configuration file):\
+Day = 14 (simulate user profiles only for one day)\
+step = 1 - frequency of every 1 minute\
+patients = 49999 - the maximum index patients\
+firstday = 02.02.2010 12:00 - date started modeling\
+male = .5 - the male half of the coefficient\
+setting types of patients.\
+[Dippers]\
+prevalence = 60\
+l = 10\
+u = 22\
+\
+[Non-dippers]\
+prevalence = 20\
+l = 0\
+u = 10\
+\
+[Over-dippers]\
+prevalence = 15\
+l = 22\
+u = 30\
+\
+[Night-peakers]\
+prevalence = 5\
+l = 0\
+u = -30\
+Run "Simulator BP" start line application: python simulate.py data.out 49999_patients\
+Save used database data.out the data file that contains 100,000 user accounts, each of which has the following format:\
+1 line meta PATIENT <male | female> <age> <Type>;\
+K format strings <Date> <Time>; <HighAP>; <LowAP>.\
+Also, create unique identifiers patients.\
+\
+Allowed any optimization improvements when working in the database.\
+\
+Estimated task.\
+Estimated task consists of finding the most similar of the patient using a dynamic transformation timeline algorithm (DTW).}

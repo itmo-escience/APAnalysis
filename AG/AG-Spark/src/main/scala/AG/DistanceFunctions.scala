@@ -21,7 +21,7 @@ object DistanceFunctions {
     var dist = 0.0
     for(i <- 0 until n) {
       for(j <- 0 until n) {
-        dist += (patient1.data(i) - patient2.data(i)) * inverseCovariance(0,i) * (patient1.data(i) - patient2.data(i))
+        dist += (patient1.data(i) - patient2.data(j)) * inverseCovariance(0,i) * (patient1.data(i) - patient2.data(j))
       }
     }
     return Math.sqrt(dist)

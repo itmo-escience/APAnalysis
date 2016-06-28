@@ -20,15 +20,12 @@ object Utils {
 
   def parseData(line: String) = {
     val pieces = line.split('\n')
-
     val header = pieces(0).trim().split(' ')
     val sex = header(0)
     val age = header(1).toInt
     val setting = header(2)
-
     val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
     var data = Array.empty[Double]
-
     pieces.drop(1).foreach(x => {
       val row = x.split(';')
       data :+= row(1).toDouble
@@ -49,6 +46,7 @@ object Utils {
         }
       }
     }
+    assert(result.rows == result.cols, "Data size not equal.")
     for(i <- 0 until result.rows) {
       for(j <- 0 until result.cols) {
         result(i,j) = result(i,j) / result.cols

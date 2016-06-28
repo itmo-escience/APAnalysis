@@ -57,7 +57,6 @@ object Main {
     }
     println(mahalDistVect)
 
-
     //calculate mahalanobis distance vector for one patient using broadcast variable
     val firstPatient = sc.broadcast(parsedData.first()._2)
     def calculateMahalanobis(patient: (Long, Patient)): Double = {
@@ -65,7 +64,7 @@ object Main {
       var dist = 0.0
       for(i <- 0 until n) {
         for(j <- 0 until n) {
-          dist += (firstPatient.value.data(i) - patient._2.data(i)) * inverseCovariance(0,i) * (firstPatient.value.data(i) - patient._2.data(i))
+          dist += (firstPatient.value.data(i) - patient._2.data(j)) * inverseCovariance(0,i) * (firstPatient.value.data(i) - patient._2.data(j))
         }
       }
       return Math.sqrt(dist)

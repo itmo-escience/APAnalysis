@@ -66,7 +66,7 @@
       <file leaf-file-name="MahalanobisComparator.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/MahalanobisComparator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8333333">
+            <state vertical-scroll-proportion="0.7070707">
               <caret line="33" column="34" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
               <folding />
             </state>
@@ -133,8 +133,8 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="140" />
-    <option name="y" value="-1047" />
+    <option name="x" value="288" />
+    <option name="y" value="-1019" />
     <option name="width" value="804" />
     <option name="height" value="714" />
   </component>
@@ -460,7 +460,7 @@
     <option name="totallyTimeSpent" value="67263000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="140" y="-1047" width="804" height="714" extended-state="0" />
+    <frame x="288" y="-1019" width="804" height="714" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -940,7 +940,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MahalanobisComparator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8333333">
+        <state vertical-scroll-proportion="0.7070707">
           <caret line="33" column="34" selection-start-line="33" selection-start-column="34" selection-end-line="33" selection-end-column="34" />
           <folding />
         </state>

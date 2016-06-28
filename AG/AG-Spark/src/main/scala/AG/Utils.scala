@@ -4,7 +4,7 @@ import java.time.format.DateTimeFormatter
 
 import AG.Main.Patient
 import breeze.linalg.DenseMatrix
-import org.apache.spark.mllib.linalg.Vector
+import org.apache.spark.mllib.linalg.{Vectors, Vector}
 import org.apache.spark.mllib.stat.Statistics
 import org.apache.spark.rdd.RDD
 
@@ -37,7 +37,8 @@ object Utils {
     Patient(sex, age, setting, data)
   }
 
-  def findCovariance(matrix: RDD[Vector]): DenseMatrix[Double] = {
+  def findCovariance(input: RDD[(Long, Patient)]): DenseMatrix[Double] = {
+    val matrix: RDD[Vector] = input.map(x => Vectors.dense(x._2.data))
     val mean = Statistics.colStats(matrix).mean
     val n = matrix.first().size
     var result: DenseMatrix[Double] = DenseMatrix.zeros[Double](n,n)

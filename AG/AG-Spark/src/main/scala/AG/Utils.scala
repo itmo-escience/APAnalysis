@@ -1,11 +1,10 @@
 package AG
 
-import java.time.format.DateTimeFormatter
-
 import AG.Main.Patient
 import breeze.linalg.DenseMatrix
 import org.apache.spark.mllib.linalg.{Vectors, Vector}
 import org.apache.spark.mllib.stat.Statistics
+import java.time.format.DateTimeFormatter
 import org.apache.spark.rdd.RDD
 
 object Utils {
@@ -28,8 +27,8 @@ object Utils {
     var data = Array.empty[Double]
     pieces.drop(1).foreach(x => {
       val row = x.split(';')
-      data :+= row(1).toDouble
-      data :+= row(2).toDouble
+      data :+= row(1).toDouble // high bp measurement
+      data :+= row(2).toDouble // low bp measurement
     })
     Patient(sex, age, setting, data)
   }
@@ -37,15 +36,34 @@ object Utils {
   def findCovariance(input: RDD[(Long, Patient)]): DenseMatrix[Double] = {
     val matrix: RDD[Vector] = input.map(x => Vectors.dense(x._2.data))
     val mean = Statistics.colStats(matrix).mean
-    val n = matrix.first().size
+    val n = matrix.first().size //dimension of our measurement data
     var result: DenseMatrix[Double] = DenseMatrix.zeros[Double](n,n)
-    matrix.foreach{ row =>
-      for(i <- 0 until row.size) {
-        for(j <- 0 until row.size) {
-          result(i,j) :+= ((row(i) - mean(i))*(row(j) - mean(j)))
+    def isHigh(index: Int) = index % 2 == 0
+    def isLow(index: Int) = !isHigh(index)
+    matrix.foreach{ patient =>
+      println(patient)
+      for(i <- 0 until n) {
+        for(j <- 0 until n) {
+          if(isHigh(i) && isHigh(j)) {
+            println("isHigh && isHigh (i = " + i + ", j = " + j + "): patient(i) = " + patient(i) + ", mean(i) = " + mean(i) + ", patient(j) = " + patient(j) + ", mean(j) = " + mean(j))
+            result(i,j) += ((patient(i) - mean(i))*(patient(j) - mean(j)))
+          }
+          else if(isHigh(i) && isLow(j)) {
+            println("isHigh && isLow (i = " + i + ", j = " + j + "): patient(i) = " + patient(i) + ", mean(i) = " + mean(i) + ", patient(j) = " + patient(j) + ", mean(j) = " + mean(j))
+            result(i,j) += ((patient(i) - mean(i))*(patient(j) - mean(j)))
+          }
+          else if(isLow(i) && isHigh(j)) {
+            //println("isLow && isHigh (i = " + i + ", j = " + j + "): patient(i) = " + patient(i) + ", mean(i) = " + mean(i) + ", patient(j) = " + patient(j) + ", mean(j) = " + mean(j))
+            result(i,j) += ((patient(i) - mean(i))*(patient(j) - mean(j)))
+          }
+          else if(isLow(i) && isLow(j)) {
+            //println("isLow && isLow (i = " + i + ", j = " + j + "): patient(i) = " + patient(i) + ", mean(i) = " + mean(i) + ", patient(j) = " + patient(j) + ", mean(j) = " + mean(j))
+            result(i,j) += ((patient(i) - mean(i))*(patient(j) - mean(j)))
+          }
         }
       }
     }
+    println(result)
     assert(result.rows == result.cols, "Data size not equal.")
     for(i <- 0 until result.rows) {
       for(j <- 0 until result.cols) {

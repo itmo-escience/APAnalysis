@@ -2,9 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8dfda638-0577-475a-a02c-b9d767b16a65" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/AG/DistanceFunctions.scala" afterPath="$PROJECT_DIR$/src/main/scala/AG/DistanceFunctions.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/AG/Main.scala" afterPath="$PROJECT_DIR$/src/main/scala/AG/Main.scala" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/AG/Main$$anonfun$6.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/AG/DistanceFunctions$$anonfun$mahalanobisDistance$1$$anonfun$apply$mcVI$sp$1.class" afterPath="$PROJECT_DIR$/target/classes/AG/DistanceFunctions$$anonfun$mahalanobisDistance$1$$anonfun$apply$mcVI$sp$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/AG/Main$$anonfun$1.class" afterPath="$PROJECT_DIR$/target/classes/AG/Main$$anonfun$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/AG/Main$$anonfun$2.class" afterPath="$PROJECT_DIR$/target/classes/AG/Main$$anonfun$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/AG/Main$$anonfun$3.class" afterPath="$PROJECT_DIR$/target/classes/AG/Main$$anonfun$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/AG/Main$$anonfun$4.class" afterPath="$PROJECT_DIR$/target/classes/AG/Main$$anonfun$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/AG/Main$$anonfun$5.class" afterPath="$PROJECT_DIR$/target/classes/AG/Main$$anonfun$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/AG/Main$$anonfun$AG$Main$$calculateMahalanobis$1$1$$anonfun$apply$mcVI$sp$1.class" afterPath="$PROJECT_DIR$/target/classes/AG/Main$$anonfun$AG$Main$$calculateMahalanobis$1$1$$anonfun$apply$mcVI$sp$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/AG/Main$$anonfun$AG$Main$$calculateMahalanobis$1$1.class" afterPath="$PROJECT_DIR$/target/classes/AG/Main$$anonfun$AG$Main$$calculateMahalanobis$1$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/AG/Main$.class" afterPath="$PROJECT_DIR$/target/classes/AG/Main$.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/AG/Main$Patient$.class" afterPath="$PROJECT_DIR$/target/classes/AG/Main$Patient$.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/AG/Main$Patient.class" afterPath="$PROJECT_DIR$/target/classes/AG/Main$Patient.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/AG/Main.class" afterPath="$PROJECT_DIR$/target/classes/AG/Main.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/AG/Utils$$anonfun$findCovariance$1$$anonfun$apply$mcVI$sp$2.class" afterPath="$PROJECT_DIR$/target/classes/AG/Utils$$anonfun$findCovariance$1$$anonfun$apply$mcVI$sp$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/AG/Utils$$anonfun$findCovariance$1.class" afterPath="$PROJECT_DIR$/target/classes/AG/Utils$$anonfun$findCovariance$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/AG/Utils$$anonfun$findCovariance$2$$anonfun$apply$1$$anonfun$apply$mcVI$sp$1.class" afterPath="$PROJECT_DIR$/target/classes/AG/Utils$$anonfun$findCovariance$2$$anonfun$apply$1$$anonfun$apply$mcVI$sp$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/AG/Utils$$anonfun$findCovariance$2$$anonfun$apply$1.class" afterPath="$PROJECT_DIR$/target/classes/AG/Utils$$anonfun$findCovariance$2$$anonfun$apply$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/AG/Utils$$anonfun$findCovariance$2.class" afterPath="$PROJECT_DIR$/target/classes/AG/Utils$$anonfun$findCovariance$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/AG/Utils$$anonfun$parseData$1.class" afterPath="$PROJECT_DIR$/target/classes/AG/Utils$$anonfun$parseData$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/AG/Utils$.class" afterPath="$PROJECT_DIR$/target/classes/AG/Utils$.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/AG/Utils.class" afterPath="$PROJECT_DIR$/target/classes/AG/Utils.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../AG-Java/src/Main.java" afterPath="$PROJECT_DIR$/../AG-Java/src/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/scala/AG/Utils.scala" afterPath="$PROJECT_DIR$/src/main/scala/AG/Utils.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../AG-Java/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../AG-Java/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AG-Spark.iws" />
@@ -38,11 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.scala" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/AG/Main.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.35656837">
-              <caret line="60" column="58" selection-start-line="60" selection-start-column="58" selection-end-line="60" selection-end-column="58" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="52" column="7" selection-start-line="52" selection-start-column="7" selection-end-line="52" selection-end-column="7" />
               <folding>
                 <element signature="e#12#59#0" expanded="true" />
               </folding>
@@ -62,12 +83,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Utils.scala" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Utils.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/AG/Utils.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
-              <folding />
+            <state vertical-scroll-proportion="0.4140625">
+              <caret line="53" column="11" selection-start-line="53" selection-start-column="11" selection-end-line="53" selection-end-column="11" />
+              <folding>
+                <element signature="e#12#34#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -101,9 +124,9 @@
         <option value="$PROJECT_DIR$/src/main/scala/utils.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/Main.scala" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/scala/AG/Utils.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/AG/DistanceFunctions.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/AG/Main.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/AG/Utils.scala" />
       </list>
     </option>
   </component>
@@ -118,10 +141,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-18" />
-    <option name="y" value="-1026" />
-    <option name="width" value="1280" />
-    <option name="height" value="714" />
+    <option name="x" value="622" />
+    <option name="y" value="-1041" />
+    <option name="width" value="845" />
+    <option name="height" value="724" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -418,7 +441,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-18" y="-1026" width="1280" height="714" extended-state="0" />
+    <frame x="622" y="-1041" width="845" height="724" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -431,13 +454,13 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22008863" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21835443" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24940334" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26847035" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35530546" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34810126" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -463,7 +486,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -504,7 +527,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#12#34#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -530,6 +555,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -547,7 +573,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#12#34#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -583,7 +611,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
-          <folding />
+          <folding>
+            <element signature="e#12#34#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -611,16 +641,19 @@
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/scalanlp/breeze_2.10/0.9/breeze_2.10-0.9.jar!/breeze/linalg/DenseMatrix.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.24361949">
+          <caret line="7" column="68" selection-start-line="7" selection-start-column="68" selection-end-line="7" selection-end-column="68" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/AG/Utils.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/AG/Main.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
-          <folding />
+          <caret line="52" column="7" selection-start-line="52" selection-start-column="7" selection-end-line="52" selection-end-column="7" />
+          <folding>
+            <element signature="e#12#59#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -634,12 +667,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/AG/Main.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/AG/Utils.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35656837">
-          <caret line="60" column="58" selection-start-line="60" selection-start-column="58" selection-end-line="60" selection-end-column="58" />
+        <state vertical-scroll-proportion="0.4140625">
+          <caret line="53" column="11" selection-start-line="53" selection-start-column="11" selection-end-line="53" selection-end-column="11" />
           <folding>
-            <element signature="e#12#59#0" expanded="true" />
+            <element signature="e#12#34#0" expanded="true" />
           </folding>
         </state>
       </provider>

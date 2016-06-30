@@ -34,36 +34,17 @@ object Utils {
   }
 
   def findCovariance(input: RDD[(Long, Patient)]): DenseMatrix[Double] = {
-    val matrix: RDD[Vector] = input.map(x => Vectors.dense(x._2.data))
-    val mean = Statistics.colStats(matrix).mean
-    val n = matrix.first().size //dimension of our measurement data
+    val patientMatrix: RDD[Vector] = input.map(x => Vectors.dense(x._2.data))
+    val mean = Statistics.colStats(patientMatrix).mean
+    val n = patientMatrix.first().size //dimension of our measurement data
     var result: DenseMatrix[Double] = DenseMatrix.zeros[Double](n,n)
-    def isHigh(index: Int) = index % 2 == 0
-    def isLow(index: Int) = !isHigh(index)
-    matrix.foreach{ patient =>
-      println(patient)
+    patientMatrix.collect().foreach{ patient =>
       for(i <- 0 until n) {
         for(j <- 0 until n) {
-          if(isHigh(i) && isHigh(j)) {
-            println("isHigh && isHigh (i = " + i + ", j = " + j + "): patient(i) = " + patient(i) + ", mean(i) = " + mean(i) + ", patient(j) = " + patient(j) + ", mean(j) = " + mean(j))
-            result(i,j) += ((patient(i) - mean(i))*(patient(j) - mean(j)))
-          }
-          else if(isHigh(i) && isLow(j)) {
-            println("isHigh && isLow (i = " + i + ", j = " + j + "): patient(i) = " + patient(i) + ", mean(i) = " + mean(i) + ", patient(j) = " + patient(j) + ", mean(j) = " + mean(j))
-            result(i,j) += ((patient(i) - mean(i))*(patient(j) - mean(j)))
-          }
-          else if(isLow(i) && isHigh(j)) {
-            //println("isLow && isHigh (i = " + i + ", j = " + j + "): patient(i) = " + patient(i) + ", mean(i) = " + mean(i) + ", patient(j) = " + patient(j) + ", mean(j) = " + mean(j))
-            result(i,j) += ((patient(i) - mean(i))*(patient(j) - mean(j)))
-          }
-          else if(isLow(i) && isLow(j)) {
-            //println("isLow && isLow (i = " + i + ", j = " + j + "): patient(i) = " + patient(i) + ", mean(i) = " + mean(i) + ", patient(j) = " + patient(j) + ", mean(j) = " + mean(j))
-            result(i,j) += ((patient(i) - mean(i))*(patient(j) - mean(j)))
-          }
+          result(i,j) += ((patient(i) - mean(i))*(patient(j) - mean(j)))
         }
       }
     }
-    println(result)
     assert(result.rows == result.cols, "Data size not equal.")
     for(i <- 0 until result.rows) {
       for(j <- 0 until result.cols) {

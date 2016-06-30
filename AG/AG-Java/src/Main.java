@@ -17,9 +17,9 @@ public class Main {
 
     public static void main(String [] args)  {
         try {
-            int top = 100;
-            List<Patient> result = getPatients(10, "./data.out.ch0");
-
+            int top = 5;
+            //List<Patient> result = getPatients(10, "./data.out.ch0");
+            List<Patient> result = getPatients(10, "/Users/antonradice/Desktop/APAnalysis/AG/Data/sample.csv");
 
             // Count Evclid distance Task I.1
             Collections.sort(result, new EvclidComparator(result.get(0)));
@@ -32,9 +32,29 @@ public class Main {
             // Count Mahalanobis distance Task I.2
             double [][] matrix = findCovariance(result);
 
+            //test inverse operation
+            double [][] m = new double[][]{ {1.0, 2.0, 3.0}, {4.0, 5.0, 6.0}, {7.0, 8.0, 9.0}};
+            Array2DRowRealMatrix mm = new Array2DRowRealMatrix(m);
+            RealMatrix mi = MatrixUtils.inverse(mm);
+            System.out.println("rows: " + mm.getRowDimension() + ", cols: " + mm.getColumnDimension());
+            for(int i = 0; i < 3; i++) {
+                for(int j = 0; j < 3; j++) {
+                    System.out.print(mm.getData()[i][j] + "  ");
+                }
+                System.out.println("");
+            }
+            for(int i = 0; i < 3; i++) {
+                for(int j = 0; j < 3; j++) {
+                    System.out.print(mi.getData()[i][j] + "  ");
+                }
+                System.out.println("");
+            }
+
             // code for inverse matrix
             Array2DRowRealMatrix rm = new Array2DRowRealMatrix(matrix);
             RealMatrix inverseMatrix = MatrixUtils.inverse(rm);
+            //System.out.println(matrix[0][1]);
+            //System.out.println(inverseMatrix.getData()[0][1]);
             Collections.sort(result, new MahalanobisComparator(result.get(0), inverseMatrix.getData()));
 
             for(int i = 0; i < top; i++) {
@@ -80,35 +100,31 @@ public class Main {
         }
 
         for (int i = 0; i < result.size(); i++) {
+            //System.out.println(result.get(i).agHigh.toString() + result.get(i).agLow.toString());
             for (int j = 0; j < result.get(i).agHigh.size(); j++) {
                 for (int k = 0; k < result.get(i).agHigh.size(); k++) {
                     matrix[j][k] += (result.get(i).agHigh.get(j) - ME[j])
                                     *(result.get(i).agHigh.get(k) - ME[k]);
-                    System.out.println("isHigh && isHigh (i = " + j + ", j = " + k + "): patient(i) = " + result.get(i).agHigh.get(j) + ", mean(i) = " + ME[j] + ", patient(j) = " + result.get(i).agHigh.get(k) + ", mean(j) = " + ME[k]);
                 }
                 for (int k = 0; k < result.get(i).agLow.size(); k++) {
                     matrix[j][k + result.get(i).agLow.size()] += (result.get(i).agHigh.get(j) - ME[j])
                                                                 *(result.get(i).agLow.get(k) - ME[k + result.get(i).agLow.size()]);
-                    System.out.println("isHigh && isLow (i = " + j + ", j = " + k + "): patient(i) = " + result.get(i).agHigh.get(j) + ", mean(i) = " + ME[j] + ", patient(j) = " + result.get(i).agLow.get(k) + ", mean(j) = " + ME[k + result.get(i).agLow.size()]);
                 }
             }
             for (int j = 0; j < result.get(i).agLow.size(); j++) {
                 for (int k = 0; k < result.get(i).agHigh.size(); k++) {
                     matrix[j + result.get(i).agLow.size()][k] += (result.get(i).agLow.get(j) - ME[result.get(i).agLow.size()+ j])
                                                                 *(result.get(i).agHigh.get(k) - ME[k]);
-                    //System.out.println("isLow && isHigh (i = " + j + ", j = " + k + "): patient(i) = " + result.get(i).agLow.get(j) + ", mean(i) = " + ME[result.get(i).agLow.size()+ j] + ", patient(j) = " + result.get(i).agHigh.get(k) + ", mean(j) = " + ME[k]);
                 }
                 for (int k = 0; k < result.get(i).agLow.size(); k++) {
                     matrix[j + result.get(i).agLow.size()][k + result.get(i).agLow.size()] += (result.get(i).agLow.get(j) - ME[j+ result.get(i).agLow.size()])
                                                                                             *(result.get(i).agLow.get(k) - ME[k + result.get(i).agLow.size()]);
-                    //System.out.println("isLow && isLow (i = " + j + ", j = " + k + "): patient(i) = " + result.get(i).agLow.get(j) + ", mean(i) = " + ME[j+ result.get(i).agLow.size()] + ", patient(j) = " + result.get(i).agLow.get(k) + ", mean(j) = " + ME[k + result.get(i).agLow.size()]);
                 }
             }
         }
 
         for (int j = 0; j < matrix.length; j++) {
             for (int k = 0; k < matrix.length; k++) {
-                //System.out.println(matrix[j][k]);
                 matrix[j][k] = matrix[j][k] / matrix.length;
             }
         }

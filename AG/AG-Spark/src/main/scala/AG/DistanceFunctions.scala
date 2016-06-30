@@ -12,7 +12,7 @@ object DistanceFunctions {
     for(i <- 0 until n) {
         dist += Math.pow((patient1.data(i) - patient2.data(i)), 2)
     }
-    Math.sqrt(dist)
+    return Math.sqrt(dist)
   }
 
   def mahalanobisDistance(patient1: Patient, patient2: Patient, inverseCovariance: DenseMatrix[Double]): Double = {
@@ -20,11 +20,9 @@ object DistanceFunctions {
     val n = patient1.data.length
     var dist = 0.0
     for(i <- 0 until n) {
-      for(j <- 0 until n) {
-        dist += (patient1.data(i) - patient2.data(j)) * inverseCovariance(0,i) * (patient1.data(i) - patient2.data(j))
-      }
+      dist += ((patient1.data(i) - patient2.data(i)) * inverseCovariance(0,i) * (patient1.data(i) - patient2.data(i)))
     }
-    return Math.sqrt(dist)
+    return Math.sqrt(Math.abs(dist))
   }
 
 }

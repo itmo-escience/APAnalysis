@@ -29,7 +29,7 @@ def generate_file(input_file, num_patients):
 					num_to_add -= size
 			print len(output_data)
 	
-	output_file = 'out_' + str(num_patients) + '_patients.csv'
+	output_file = '/Users/antonradice/Desktop/experiments/out_' + str(num_patients) + '_patients.csv'
 	with open(output_file, 'wb') as f:
 		for line in output_data:
 			f.write(''.join(line))

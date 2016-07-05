@@ -3,6 +3,7 @@ import random
 import re
 
 input_file = '/Users/antonradice/Desktop/APAnalysis/AG/Data/original_data.csv'
+output_dir = '/Users/antonradice/Desktop/ExperimentData/'
 num_data_points = 97 # 96 measurements + patient header line
 
 def generate_file(input_file, num_patients):
@@ -29,7 +30,7 @@ def generate_file(input_file, num_patients):
 					num_to_add -= size
 			print len(output_data)
 	
-	output_file = '/Users/antonradice/Desktop/experiments/out_' + str(num_patients) + '_patients.csv'
+	output_file = output_dir + 'out_' + str(num_patients) + '_patients.csv'
 	with open(output_file, 'wb') as f:
 		for line in output_data:
 			f.write(''.join(line))

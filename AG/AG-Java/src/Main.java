@@ -17,22 +17,25 @@ public class Main {
 
     public static void main(String [] args)  {
         try {
-            int top = 5;
             //List<Patient> result = getPatients(10, "./data.out.ch0");
-            List<Patient> result = getPatients(10, "/Users/antonradice/Desktop/APAnalysis/AG/Data/sample.csv");
+            //List<Patient> result = getPatients(10, "/Users/antonradice/Desktop/APAnalysis/AG/Data/sample.csv");
+            List<Patient> result = getPatients(10, "/Users/antonradice/Desktop/ExperimentData/out_100000_patients.csv");
+            //int top = result.size();
 
             // Count Evclid distance Task I.1
+            /*
             Collections.sort(result, new EvclidComparator(result.get(0)));
 
             for(int i = 0; i < top; i++) {
                 System.out.print(result.get(i).getAge() + " - " + result.get(i).getDiff() + " ; ");
             }
             System.out.println();
+            */
 
             // Count Mahalanobis distance Task I.2
-            double [][] matrix = findCovariance(result);
 
             //test inverse operation
+            /*
             double [][] m = new double[][]{ {1.0, 2.0, 3.0}, {4.0, 5.0, 6.0}, {7.0, 8.0, 9.0}};
             Array2DRowRealMatrix mm = new Array2DRowRealMatrix(m);
             RealMatrix mi = MatrixUtils.inverse(mm);
@@ -49,19 +52,34 @@ public class Main {
                 }
                 System.out.println("");
             }
+            */
 
-            // code for inverse matrix
+            // code for covariance and inverse matrix
+            System.out.println("Patients count: " + result.size());
+            long total_exec_t0 = System.nanoTime();
+            long covar_exec_t0 = System.nanoTime();
+            double [][] matrix = findCovariance(result);
+            long covar_exec_t1 = System.nanoTime();
+            long inverse_exec_t0 = System.nanoTime();
             Array2DRowRealMatrix rm = new Array2DRowRealMatrix(matrix);
             RealMatrix inverseMatrix = MatrixUtils.inverse(rm);
-            //System.out.println(matrix[0][1]);
-            //System.out.println(inverseMatrix.getData()[0][1]);
+            long inverse_exec_t1 = System.nanoTime();
+            long mahal_exec_t0 = System.nanoTime();
             Collections.sort(result, new MahalanobisComparator(result.get(0), inverseMatrix.getData()));
+            long mahal_exec_t1 = System.nanoTime();
+            long total_exec_t1 = System.nanoTime();
+            System.out.println("Total execution elapsed time: " + (total_exec_t1 - total_exec_t0) + " nanoseconds, " + (total_exec_t1 - total_exec_t0)/ 1000000000.0 + " seconds.");
+            System.out.println("Covariance execution elapsed time: " + (covar_exec_t1 - covar_exec_t0) + " nanoseconds, " + (covar_exec_t1 - covar_exec_t0)/ 1000000000.0 + " seconds.");
+            System.out.println("Inverse execution elapsed time: " + (inverse_exec_t1 - inverse_exec_t0) + " nanoseconds, " + (inverse_exec_t1 - inverse_exec_t0)/ 1000000000.0 + " seconds.");
+            System.out.println("Mahalanobis execution elapsed time: " + (mahal_exec_t1 - mahal_exec_t0) + " nanoseconds, " + (mahal_exec_t1 - mahal_exec_t0)/ 1000000000.0 + " seconds.");
 
+            /*
             for(int i = 0; i < top; i++) {
                 System.out.print(result.get(i).getAge() + " - " + result.get(i).getDiff() + " ; ");
             }
             System.out.println();
-
+            */
+            /*
             Patient ptn = new Patient(result.get(0));
             int amount = ptn.agHigh.size()/3;
             for (int i = 0; i < amount; i++) {
@@ -72,7 +90,7 @@ public class Main {
             }
 
             //dwt(ptn, result.get(0));
-
+            */
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
@@ -100,7 +118,6 @@ public class Main {
         }
 
         for (int i = 0; i < result.size(); i++) {
-            //System.out.println(result.get(i).agHigh.toString() + result.get(i).agLow.toString());
             for (int j = 0; j < result.get(i).agHigh.size(); j++) {
                 for (int k = 0; k < result.get(i).agHigh.size(); k++) {
                     matrix[j][k] += (result.get(i).agHigh.get(j) - ME[j])

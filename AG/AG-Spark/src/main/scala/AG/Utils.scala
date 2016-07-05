@@ -9,11 +9,11 @@ import org.apache.spark.rdd.RDD
 
 object Utils {
 
-  def timer[R](block: => R): R = {
+  def timer[R](block: => R, message: String): R = {
     val t0 = System.nanoTime()
     val result = block    // call-by-name
     val t1 = System.nanoTime()
-    println("Elapsed time: " + (t1 - t0) + " nanoseconds, " + (t1 - t0)/ 1000000000.0 + " seconds.")
+    println(message + " elapsed time: " + (t1 - t0) + " nanoseconds, " + (t1 - t0)/ 1000000000.0 + " seconds.")
     result
   }
 

@@ -1,0 +1,4 @@
+Host ec2-52-35-134-171.us-west-2.compute.amazonaws.com
+RSAAuthentication yes
+IdentityFile ~/.ssh/amz_micro.pem
+User ubuntu

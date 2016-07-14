@@ -18,9 +18,9 @@ public class Main {
     public static void main(String [] args)  {
         try {
             //List<Patient> result = getPatients(10, "./data.out.ch0");
-            //List<Patient> result = getPatients(10, "/Users/antonradice/Desktop/APAnalysis/AG/Data/sample.csv");
-            List<Patient> result = getPatients(10, "/Users/antonradice/Desktop/ExperimentData/out_100000_patients.csv");
-            //int top = result.size();
+            List<Patient> result = getPatients(10, "/Users/antonradice/Desktop/APAnalysis/AG/Data/sample.csv");
+            //List<Patient> result = getPatients(10, "/Users/antonradice/Desktop/ExperimentData/out_100000_patients.csv");
+            int top = result.size();
 
             // Count Evclid distance Task I.1
             /*
@@ -73,12 +73,11 @@ public class Main {
             System.out.println("Inverse execution elapsed time: " + (inverse_exec_t1 - inverse_exec_t0) + " nanoseconds, " + (inverse_exec_t1 - inverse_exec_t0)/ 1000000000.0 + " seconds.");
             System.out.println("Mahalanobis execution elapsed time: " + (mahal_exec_t1 - mahal_exec_t0) + " nanoseconds, " + (mahal_exec_t1 - mahal_exec_t0)/ 1000000000.0 + " seconds.");
 
-            /*
             for(int i = 0; i < top; i++) {
                 System.out.print(result.get(i).getAge() + " - " + result.get(i).getDiff() + " ; ");
             }
             System.out.println();
-            */
+
             /*
             Patient ptn = new Patient(result.get(0));
             int amount = ptn.agHigh.size()/3;
@@ -143,6 +142,7 @@ public class Main {
         for (int j = 0; j < matrix.length; j++) {
             for (int k = 0; k < matrix.length; k++) {
                 matrix[j][k] = matrix[j][k] / matrix.length;
+                System.out.println(matrix[j][k]);
             }
         }
          return matrix;

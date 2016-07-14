@@ -7,13 +7,19 @@ import org.apache.spark.mllib.stat.Statistics
 import java.time.format.DateTimeFormatter
 import org.apache.spark.rdd.RDD
 
+import scala.reflect.io.File
+
 object Utils {
 
   def timer[R](block: => R, message: String): R = {
     val t0 = System.nanoTime()
     val result = block    // call-by-name
     val t1 = System.nanoTime()
-    println(message + " elapsed time: " + (t1 - t0) + " nanoseconds, " + (t1 - t0)/ 1000000000.0 + " seconds.")
+    val elapsedTimeNanoSeconds = (t1 - t0)
+    val elapsedTimeSeconds = (t1 - t0)/ 1000000000.0
+    val output = message + " elapsed time: " + elapsedTimeNanoSeconds + " nanoseconds, " + elapsedTimeSeconds + " seconds."
+    println(output)
+    File("/Users/antonradice/Desktop/ExperimentResults").appendAll(output + "\n")
     result
   }
 
@@ -37,20 +43,26 @@ object Utils {
     val patientMatrix: RDD[Vector] = input.map(x => Vectors.dense(x._2.data))
     val mean = Statistics.colStats(patientMatrix).mean
     val n = patientMatrix.first().size //dimension of our measurement data
-    var result: DenseMatrix[Double] = DenseMatrix.zeros[Double](n,n)
-    patientMatrix.collect().foreach{ patient =>
+    def toIndividualCovariance(patient: Vector): DenseMatrix[Double] = {
+      var tmpResult: DenseMatrix[Double] = DenseMatrix.zeros[Double](n,n)
       for(i <- 0 until n) {
         for(j <- 0 until n) {
-          result(i,j) += ((patient(i) - mean(i))*(patient(j) - mean(j)))
+          tmpResult(i,j) += ((patient(i) - mean(i))*(patient(j) - mean(j)))
         }
       }
+      tmpResult
     }
-    assert(result.rows == result.cols, "Data size not equal.")
-    for(i <- 0 until result.rows) {
-      for(j <- 0 until result.cols) {
-        result(i,j) = result(i,j) / result.cols
+    def toSummedCovariance(individualMatrix1: DenseMatrix[Double], individualMatrix2: DenseMatrix[Double]): DenseMatrix[Double] = {
+      var result: DenseMatrix[Double] = DenseMatrix.zeros[Double](n,n)
+      for(i <- 0 until n) {
+        for(j <- 0 until n) {
+          result(i,j) += individualMatrix1(i,j) + individualMatrix2(i,j)
+        }
       }
+      result
     }
-    result
+    val finalResult = patientMatrix.map(toIndividualCovariance).reduce(toSummedCovariance).mapPairs({ case ((row, col), value) => { value / n }})
+    finalResult
   }
+
 }

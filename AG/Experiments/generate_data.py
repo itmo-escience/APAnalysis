@@ -2,15 +2,15 @@ import itertools
 import random
 import re
 
-input_file = '/Users/antonradice/Desktop/APAnalysis/AG/Data/original_data.csv'
-output_dir = '/Users/antonradice/Desktop/ExperimentData/'
+input_file = '../Data/original_data.csv'
+output_dir = 'D:/Temp/ExperimentData/'
 num_data_points = 97 # 96 measurements + patient header line
 
 def generate_file(input_file, num_patients):
 
 	def grouper(iterable, n):
-	    args = [iter(iterable)] * n
-	    return itertools.izip_longest(*args)
+		args = [iter(iterable)] * n
+		return itertools.zip_longest(*args)
 
 	with open(input_file) as f:
 		lines = f.readlines()
@@ -28,10 +28,10 @@ def generate_file(input_file, num_patients):
 				else:
 					output_data += random.sample(data, size)
 					num_to_add -= size
-			print len(output_data)
+			print(len(output_data))
 	
 	output_file = output_dir + 'out_' + str(num_patients) + '_patients.csv'
-	with open(output_file, 'wb') as f:
+	with open(output_file, 'w') as f:
 		for line in output_data:
 			f.write(''.join(line))
 

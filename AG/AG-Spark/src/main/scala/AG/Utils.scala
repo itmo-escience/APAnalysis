@@ -19,7 +19,7 @@ object Utils {
     val elapsedTimeSeconds = (t1 - t0)/ 1000000000.0
     val output = message + " elapsed time: " + elapsedTimeNanoSeconds + " nanoseconds, " + elapsedTimeSeconds + " seconds."
     println(output)
-    File("/Users/antonradice/Desktop/ExperimentResults").appendAll(output + "\n")
+    File("D:/wspace/ExperimentalResults/result.txt").appendAll(output + "\n")
     result
   }
 
@@ -43,25 +43,39 @@ object Utils {
     val patientMatrix: RDD[Vector] = input.map(x => Vectors.dense(x._2.data))
     val mean = Statistics.colStats(patientMatrix).mean
     val n = patientMatrix.first().size //dimension of our measurement data
-    def toIndividualCovariance(patient: Vector): DenseMatrix[Double] = {
-      var tmpResult: DenseMatrix[Double] = DenseMatrix.zeros[Double](n,n)
-      for(i <- 0 until n) {
-        for(j <- 0 until n) {
-          tmpResult(i,j) += ((patient(i) - mean(i))*(patient(j) - mean(j)))
+
+//    def toIndividualCovariance(patient: Vector): DenseMatrix[Double] = {
+//      var tmpResult: DenseMatrix[Double] = DenseMatrix.zeros[Double](n,n)
+//      for(i <- 0 until n) {
+//        for(j <- 0 until n) {
+//          tmpResult(i,j) += ((patient(i) - mean(i))*(patient(j) - mean(j)))
+//        }
+//      }
+//      tmpResult
+//    }
+
+    def toPartitionCovariance(patients: Iterator[Vector]):Iterator[DenseMatrix[Double]] = {
+      val tmpResult: DenseMatrix[Double] = DenseMatrix.zeros[Double](n,n)
+      for( patient <- patients) {
+        for(i <- 0 until n) {
+          for(j <- 0 until n) {
+            tmpResult(i,j) += ((patient(i) - mean(i))*(patient(j) - mean(j)))
+          }
         }
       }
-      tmpResult
+      Iterator(tmpResult)
     }
+
     def toSummedCovariance(individualMatrix1: DenseMatrix[Double], individualMatrix2: DenseMatrix[Double]): DenseMatrix[Double] = {
-      var result: DenseMatrix[Double] = DenseMatrix.zeros[Double](n,n)
       for(i <- 0 until n) {
         for(j <- 0 until n) {
-          result(i,j) += individualMatrix1(i,j) + individualMatrix2(i,j)
+          individualMatrix1(i,j) +=  individualMatrix2(i,j)
         }
       }
-      result
+      individualMatrix1
     }
-    val finalResult = patientMatrix.map(toIndividualCovariance).reduce(toSummedCovariance).mapPairs({ case ((row, col), value) => { value / n }})
+//    val finalResult = patientMatrix.map(toIndividualCovariance).reduce(toSummedCovariance).mapPairs({ case ((row, col), value) => { value / n }})
+    val finalResult = patientMatrix.mapPartitions(toPartitionCovariance).reduce(toSummedCovariance).mapPairs({ case ((row, col), value) => { value / n }})
     finalResult
   }
 

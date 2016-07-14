@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="AG">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/AG_jar/AG.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
